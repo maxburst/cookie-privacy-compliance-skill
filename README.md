@@ -6,22 +6,15 @@ It covers the whole job: scoping which laws apply, scanning the live site in a r
 
 ## Install
 
-You need read access to this repository and any one working way to reach GitHub from your terminal: an SSH key added to your GitHub account, git over HTTPS with saved credentials, or the GitHub CLI (`gh`). The GitHub CLI is not required. Then paste this into Claude Code or Codex:
+The repository is public, so no GitHub login is needed, only `git`. Paste this into Claude Code or Codex:
 
 ```text
 Install the cookie-privacy-compliance skill for me:
-1. If ~/.agents/repos/cookie-privacy-compliance-skill does not exist, clone the private repo
-   maxburst/cookie-privacy-compliance-skill into it. Try these in order and stop at the first that works:
-   - git clone git@github.com:maxburst/cookie-privacy-compliance-skill.git ~/.agents/repos/cookie-privacy-compliance-skill
-   - git clone https://github.com/maxburst/cookie-privacy-compliance-skill.git ~/.agents/repos/cookie-privacy-compliance-skill
-   - gh repo clone maxburst/cookie-privacy-compliance-skill ~/.agents/repos/cookie-privacy-compliance-skill
-   Run them with GIT_TERMINAL_PROMPT=0 so a missing login fails instead of hanging. If all three fail,
-   stop and tell me which GitHub login I am missing; do not try other ways to get the files.
+1. If ~/.agents/repos/cookie-privacy-compliance-skill does not exist, run:
+   git clone https://github.com/maxburst/cookie-privacy-compliance-skill.git ~/.agents/repos/cookie-privacy-compliance-skill
 2. Run: ~/.agents/repos/cookie-privacy-compliance-skill/install.sh --update
 3. Show me the script's output and tell me whether the skill and the scanner were both installed.
 ```
-
-Because the repository is private, GitHub will not serve it to an anonymous request, so some login is always needed. If none of the three works, the quickest fix is an SSH key: [GitHub's guide](https://docs.github.com/en/authentication/connecting-to-github-with-ssh).
 
 Start a new session afterwards. The skill is then available in both agents on that machine.
 
@@ -40,7 +33,7 @@ Update the cookie-privacy-compliance skill: run ~/.agents/repos/cookie-privacy-c
 ### Manual install
 
 ```bash
-git clone git@github.com:maxburst/cookie-privacy-compliance-skill.git ~/.agents/repos/cookie-privacy-compliance-skill
+git clone https://github.com/maxburst/cookie-privacy-compliance-skill.git ~/.agents/repos/cookie-privacy-compliance-skill
 ~/.agents/repos/cookie-privacy-compliance-skill/install.sh
 ```
 
