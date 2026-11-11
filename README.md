@@ -6,23 +6,16 @@ It covers the whole job: scoping which laws apply, scanning the live site in a r
 
 ## Install
 
-The repository is public, so no GitHub login is needed, only `git`. Paste this into Claude Code or Codex:
+Paste this into Claude Code or Codex:
 
 ```text
-Install the cookie-privacy-compliance skill for me:
-1. If ~/.agents/repos/cookie-privacy-compliance-skill does not exist, run:
-   git clone https://github.com/maxburst/cookie-privacy-compliance-skill.git ~/.agents/repos/cookie-privacy-compliance-skill
-2. Run: ~/.agents/repos/cookie-privacy-compliance-skill/install.sh --update
-3. Show me the script's output and tell me whether the skill and the scanner were both installed.
+Hi! Please install the cookie-privacy-compliance skill for me by following
+https://raw.githubusercontent.com/maxburst/cookie-privacy-compliance-skill/main/INSTALL.md
 ```
 
-Start a new session afterwards. The skill is then available in both agents on that machine.
+That is all. The agent reads [INSTALL.md](INSTALL.md), clones this repository, runs the installer and reports back. Start a new session afterwards; the skill is then available in both agents on that machine. The repository is public, so no GitHub login is needed, only `git`.
 
-To update later, paste:
-
-```text
-Update the cookie-privacy-compliance skill: run ~/.agents/repos/cookie-privacy-compliance-skill/install.sh --update and show me the output.
-```
+To update later, paste the same prompt again.
 
 ### What the installer does
 
