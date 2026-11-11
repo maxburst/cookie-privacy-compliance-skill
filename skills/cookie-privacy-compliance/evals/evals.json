@@ -1,0 +1,59 @@
+{
+  "skill_name": "cookie-privacy-compliance",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Can you audit https://www.wpbeginner.com for cookie / privacy compliance? Treat it as if it were my client's site: a WordPress content site with readers mostly in the US plus a decent chunk in Germany, France and the UK. I only have public access (no admin login), so audit only, don't change anything. I need a report I can send to the owner.",
+      "expected_output": "A two-layer audit report (owner summary + technical findings) based on an actual live scan, with findings stated per audience/regime, evidence, severity, fixes, and honest limits (scan vantage point, no admin access).",
+      "files": [],
+      "assertions": [
+        "Findings rest on a live browser scan: specific cookies or tracker hosts are named separately for the before-choice, after-reject and after-accept states",
+        "States which country the scan ran from and says EU/UK visitor behaviour was not directly observed (or was only simulated)",
+        "Gives a separate position or risk rating per audience (US versus EU/UK) instead of one blended verdict",
+        "Tests a Global Privacy Control signal and reports what changed",
+        "Every finding has evidence, the rule it conflicts with, a severity and a concrete fix",
+        "Opens with a plain-language owner summary and a short prioritised action list before the technical detail",
+        "Includes a tracker inventory listing vendors found on the site",
+        "Treats UK rules as different from EU rules (mentions the 2026 UK analytics exception or equivalent)",
+        "States the limits of the audit (no admin access, what was not checked) and that it is not legal advice"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "we run a US-only news site, similar setup to https://www.theverge.com (use that as the stand-in, public access only, read-only). We already pay for OneTrust but I have a feeling it's not really gating anything. Can you check what actually happens before/after someone rejects, whether GPC does anything, and tell me what we'd need to fix for US law incl. California? Write it up as a report.",
+      "expected_output": "A report showing measured before/after-reject and GPC behaviour, a diagnosis of why the existing consent tool is not gating, US-specific analysis (opt-out model, GPC, California links, wiretap exposure), and concrete fixes.",
+      "files": [],
+      "assertions": [
+        "Reports measured tracking before a choice and after rejecting (named cookies or vendors in both states)",
+        "Reports where the reject control sits (first layer or deeper) and how many clicks it takes",
+        "Tests a Global Privacy Control signal and reports whether tracking changed",
+        "Diagnoses why the consent tool is not gating with at least one specific failure mode, not just that it fails",
+        "Explains that US law is opt-out for ordinary tracking and that a banner is not required by statute",
+        "Identifies wiretap-style litigation exposure (CIPA or similar) for pixels, session replay or chat",
+        "Mentions California's requirement to visibly confirm that a GPC opt-out was honoured",
+        "Checks for the California opt-out link (Your Privacy Choices / Do Not Sell or Share) and says whether it works",
+        "Gives concrete, located fixes (consent-tool configuration or tag level)",
+        "States the scan vantage point and what could not be observed"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Client has a WooCommerce store selling to the UK and Germany (some Austria). Current state from my quick look: CookieYes free plugin is installed and shows a banner, but GA4 (via Site Kit), Meta Pixel (via PixelYourSite, with Conversions API on) and a Hotjar snippet hardcoded in the theme's header.php all fire on first page load before any click. WP Rocket is active with Delay JS on. YouTube embeds on product pages and Google Fonts loaded from Google. I have full wp-admin + SSH. I don't have the site URL handy right now - just write me the end-to-end implementation plan and the test/verification plan I should follow, as a markdown doc.",
+      "expected_output": "An ordered implementation plan (repair vs replace decision for CookieYes, single consent owner, defaults before tags, gating each tracker at its source incl. server-side CAPI, embeds/fonts, WP Rocket exclusions, UK vs DE differences) plus a concrete verification plan.",
+      "files": [],
+      "assertions": [
+        "Addresses the CookieYes free plan limits and makes an explicit repair, upgrade or replace decision",
+        "Makes one component the single owner of Google Consent Mode (resolves Site Kit versus CookieYes)",
+        "Gates the server-side Meta Conversions API events on consent, not only the browser pixel",
+        "Removes the hard-coded Hotjar snippet from header.php and re-adds it behind consent",
+        "Handles WP Rocket Delay JS: excludes the consent tool/default snippet and tests with simulated mouse or scroll input",
+        "Uses click-to-load placeholders for YouTube and self-hosts Google Fonts",
+        "Distinguishes UK rules (2026 analytics exception) from Germany/Austria (no analytics exemption)",
+        "Sets the consent default before any tag loads and makes a basic-versus-advanced Consent Mode choice",
+        "Addresses WooCommerce order attribution (sbjs) cookies",
+        "Verification plan covers before-choice, reject, accept and withdrawal, from UK and EU vantage points, after purging caches",
+        "Includes backup or staging and a rollback path before changes"
+      ]
+    }
+  ]
+}
