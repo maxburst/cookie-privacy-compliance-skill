@@ -9,8 +9,7 @@ It covers the whole job: scoping which laws apply, scanning the live site in a r
 Paste this into Claude Code or Codex:
 
 ```text
-Hi! Please install the cookie-privacy-compliance skill for me by following
-https://raw.githubusercontent.com/maxburst/cookie-privacy-compliance-skill/main/INSTALL.md
+Follow https://raw.githubusercontent.com/maxburst/cookie-privacy-compliance-skill/main/INSTALL.md
 ```
 
 That is all. The agent reads [INSTALL.md](INSTALL.md), clones this repository, runs the installer and reports back. Start a new session afterwards; the skill is then available in both agents on that machine. The repository is public, so no GitHub login is needed, only `git`.
